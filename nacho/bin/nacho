@@ -1,0 +1,12 @@
+#!/bin/bash
+
+opt=$1
+shift
+
+case "$opt" in
+  run)
+    cyclone -n nacho $*
+    ;;
+  *)
+    echo "usage: $0 [run] [options]"
+esac
