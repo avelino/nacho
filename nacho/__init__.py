@@ -8,4 +8,4 @@ __version__ = ".".join(map(str, VERSION))
 __status__ = "Development"
 __description__ = "Pythonic web micro-framework"
 __author__ = "Thiago Avelino"
-__license__ = u"MIT License"
+__license__ = "MIT License"
