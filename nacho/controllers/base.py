@@ -4,6 +4,8 @@ from tornado.web import RequestHandler
 
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 
+from nacho.signals import template_rendered
+
 
 class ApplicationController(RequestHandler):
     def render(self, template_name, **kwargs):
@@ -14,7 +16,7 @@ class ApplicationController(RequestHandler):
             'xsrf_token': self.xsrf_token,
             'xsrf_form_html': self.xsrf_form_html,
         })
-        self.write(self.render_template(template_name, **kwargs))
+        self.finish(self.render_template(template_name, **kwargs))
 
     def render_template(self, template_name, **kwargs):
         template_dirs = []
@@ -25,4 +27,5 @@ class ApplicationController(RequestHandler):
             template = env.get_template(template_name)
         except TemplateNotFound:
             raise TemplateNotFound(template_name)
+        template_rendered.send(template=template, context=kwargs)
         return template.render(kwargs)

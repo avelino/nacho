@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-from tornado.testing import AsyncHTTPTestCase, ExpectLog
+from nacho.testing import NachoAsyncHTTPTestCase
 from tornado.test.util import unittest
-from tornado.template import DictLoader
 
 from nacho.services.routers import Routers
 from nacho.controllers.base import ApplicationController
@@ -17,7 +16,7 @@ def wsgi_safe(cls):
     return cls
 
 
-class WebTestCase(AsyncHTTPTestCase):
+class WebTestCase(NachoAsyncHTTPTestCase):
     def get_app(self):
         self.app = Routers(
             self.get_handlers(),
