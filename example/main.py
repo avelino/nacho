@@ -1,21 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from nacho.services import servers
+import os
+from nacho.services.servers import NachoServer, AutoReload, AutoReloadFn
+from nacho.services.routers import Routers
 from nacho.controllers.base import ApplicationController
 
 
-class Home(ApplicationController):
+class MainHandler(ApplicationController):
     def get(self):
-        self.render("views/home.html")
+        data = {'title': 'testando lero lero'}
+        self.render("home.html", **data)
 
 
-class Application(servers.NachoServer):
-    def __init__(self):
-        urls = [
-            (r"/", Home)
-        ]
-        settings = dict(
-            xsrf_cookies=True,
-            xheaders=True,
-        )
-        servers.NachoServer.__init__(self, urls, settings)
+r = Routers(
+    [
+        (r"/", MainHandler),
+    ],
+    template_path=os.path.join(os.path.dirname(__file__), "views"),
+    debug=True
+)
+
+
+if __name__ == "__main__":
+    r.listen(8888)
+    AutoReload.add_reload_hook(AutoReloadFn)
+    AutoReload.start()
+    server = NachoServer()
+    server.run()
