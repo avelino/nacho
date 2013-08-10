@@ -4,4 +4,4 @@ from tornado.web import Application
 
 
 class Routers(Application):
-    pass
+    debug = True
