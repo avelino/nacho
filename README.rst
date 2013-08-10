@@ -1,8 +1,17 @@
 nacho
 =====
+Python micro web-framework and asynchronous networking library, support Python 3.x
+
 .. image:: https://raw.github.com/avelino/nacho/master/docs/_static/nacho.jpg
 
-Python micro web-framework and asynchronous networking library, support Python 3.x
+
+.. image:: https://drone.io/github.com/avelino/nacho/status.png
+    :target: https://drone.io/github.com/avelino/nacho/latest)
+    :alt: Build Status - Drone
+
+.. image:: https://travis-ci.org/avelino/nacho.png?branch=master
+    :target: https://travis-ci.org/avelino/nacho
+    :alt: Build Status - Travis CI
 
 
 Our goals
