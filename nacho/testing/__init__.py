@@ -19,6 +19,13 @@ class CapturedTemplatesMixin(object):
         finally:
             template_rendered.disconnect(record)
 
+    def assertRedirects(self, response, location):
+        self.assertTrue(response.code in (301, 302))
+        self.assertEqual(response.headers['Location'], location)
+
+    def assertStatus(self, response, status_code):
+        self.assertEqual(response.code, status_code)
+
 
 class NachoAsyncTestCase(AsyncTestCase, CapturedTemplatesMixin):
     pass

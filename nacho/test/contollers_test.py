@@ -50,7 +50,7 @@ class ControllerMethodRenderTest(SimpleHandlerTestCase):
         response = self.fetch('/')
         self.assertEqual(response.body,
                          b'Nacho used template engine Jinja2')
-        self.assertEqual(response.code, 200)
+        self.assertStatus(response, 200)
 
 
 if __name__ == '__main__':
