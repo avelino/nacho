@@ -8,7 +8,7 @@ from nacho.controllers.base import ApplicationController
 
 class MainHandler(ApplicationController):
     def get(self):
-        data = {'title': 'testando lero lero'}
+        data = {'title': 'testing'}
         self.render("home.html", **data)
 
 

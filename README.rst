@@ -4,7 +4,6 @@ Python micro web-framework and asynchronous networking library, support Python 3
 
 .. image:: https://raw.github.com/avelino/nacho/master/docs/_static/nacho.jpg
 
-
 .. image:: https://drone.io/github.com/avelino/nacho/status.png
     :target: https://drone.io/github.com/avelino/nacho/latest)
     :alt: Build Status - Drone
