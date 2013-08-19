@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from tornado.web import RequestHandler
-
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
-
 from nacho.signals import template_rendered
 
 
