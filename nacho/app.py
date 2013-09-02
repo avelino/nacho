@@ -69,4 +69,4 @@ class Application(object):
             template = env.get_template(template_name)
         except TemplateNotFound:
             raise TemplateNotFound(template_name)
-        self.response.write(template.render(kwargs).encode())
+        self.response.write(template.render(kwargs).encode('utf-8'))
