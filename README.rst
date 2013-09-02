@@ -1,6 +1,6 @@
 nacho
 =====
-Python micro web-framework and asynchronous networking library, support Python 3.x
+Python micro web-framework and asynchronous networking library tulip, support Python 3.x
 
 .. image:: https://raw.github.com/avelino/nacho/master/docs/_static/nacho.jpg
 
