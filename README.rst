@@ -16,7 +16,7 @@ Python micro web-framework and asynchronous networking library, support Python 3
 Our goals
 =========
 
-- It was designed to work on Python 3.x
+- It was designed to work on Python >= 3.3
 - tulip is default http server
 - Templates are done by **Jinja2**
 - HTML5 as the big-main-thing
