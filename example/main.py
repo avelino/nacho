@@ -12,7 +12,7 @@ from nacho.app import Application
 
 class Home(Application):
     def get(self, request_args=None):
-        data = {'a': 1}
+        data = {'title': 'Nacho Application Server'}
         self.render('home.html', **data)
 
 
