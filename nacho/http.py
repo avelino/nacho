@@ -24,9 +24,9 @@ class HttpServer(ServerHttpProtocol):
                 result = handler(request_args=args)
                 response = handler.response
             if not response:
-                raise tulip.http.HttpStatusException(404, message="No Handler found")
+                raise HttpErrorException(404, message="No Handler found")
         else:
-            raise tulip.http.HttpStatusException(404)
+            raise HttpErrorException(404)
 
         response.write_eof()
         if response.keep_alive():
