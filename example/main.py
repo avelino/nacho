@@ -11,10 +11,9 @@ from nacho.app import Application
 
 
 class Home(Application):
-    def __call__(self, request_args=None):
+    def get(self, request_args=None):
         data = {'a': 1}
         self.render('home.html', **data)
-
 
 
 def urls():
