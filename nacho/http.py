@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
-import argparse
-import email.message
 import logging
-import os
-import sys
-import cgi
 
 import tulip
-import tulip.http
+from tulip.http import ServerHttpProtocol
+from tulip.http.errors import HttpErrorException
 
-
-class HttpServer(tulip.http.ServerHttpProtocol):
+class HttpServer(ServerHttpProtocol):
     def __init__(self, router, *args, **kwargs):
         super(HttpServer, self).__init__(*args, **kwargs)
         self.router = router
