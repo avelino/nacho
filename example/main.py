@@ -1,29 +1,30 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-import os
-from nacho.services.servers import NachoServer, AutoReload, AutoReloadFn
-from nacho.services.routers import Routers
-from nacho.controllers.base import ApplicationController
+#!/usr/bin/env python3
+import logging
+import sys
+
+assert sys.version >= '3.3', 'Please use Python 3.3 or higher.'
+
+from nacho.routing import Router
+from nacho.http import HttpServer
+from nacho.multithreading import Superviser
+from nacho.app import Application
 
 
-class MainHandler(ApplicationController):
-    def get(self):
-        data = {'title': 'testing'}
-        self.render("home.html", **data)
+class Home(Application):
+    def __call__(self, request_args=None):
+        data = {'a': 1}
+        self.render('home.html', **data)
 
 
-r = Routers(
-    [
-        (r"/", MainHandler),
-    ],
-    template_path=os.path.join(os.path.dirname(__file__), "views"),
-    debug=True
-)
+
+def urls():
+    router = Router()
+    router.add_handler('/(.*)', Home())
+    return HttpServer(router, debug=True, keep_alive=75)
 
 
-if __name__ == "__main__":
-    r.listen(8888)
-    AutoReload.add_reload_hook(AutoReloadFn)
-    AutoReload.start()
-    server = NachoServer()
-    server.run()
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
+    superviser = Superviser()
+    superviser.start(urls)
