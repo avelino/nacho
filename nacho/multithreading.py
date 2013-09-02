@@ -19,7 +19,7 @@ ARGS.add_argument(
     default='127.0.0.1', help='Host name')
 ARGS.add_argument(
     '--port', action="store", dest='port',
-    default=6000, type=int, help='Port number')
+    default=7000, type=int, help='Port number')
 ARGS.add_argument(
     '--iocp', action="store_true", dest='iocp', help='Windows IOCP event loop')
 ARGS.add_argument(
