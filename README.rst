@@ -22,3 +22,13 @@ Our goals
 - HTML5 as the big-main-thing
 - Work friendly with NoSQL (otherwise we should stop talking about them)
 - Handle asynchronous requests properly
+
+
+Parameters Server
+=================
+
+- **host** - the hostname to listen on. Set this to '0.0.0.0' to have the server available externally as well. Defaults to *'127.0.0.1'*.
+- **port** - the port of the webserver. Defaults to *7000* or the port defined in the SERVER_NAME config variable if present.
+- **workers** - the workers number. Defaults to *1*.
+- **iocp** - the operacional sistem Windows IOCP event loop. Defaults to *False*.
+- **ssl** - the ssl mode. Defaults to *False*
