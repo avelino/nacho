@@ -1,3 +1,3 @@
-tornado
+-e hg+https://code.google.com/p/tulip/#egg=tulip
 jinja2
 blinker
