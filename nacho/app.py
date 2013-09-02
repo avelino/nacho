@@ -26,7 +26,11 @@ class Application(object):
             self.response = self._write_headers()
 
     def __call__(self, request_args=None):
-        self.response.write(b'base handler')
+        if self.request.method.lower() in self.http_method_names:
+            handler = getattr(self, self.request.method.lower(), None)
+            if handler:
+                return handler()
+        self.response.write(b'nacho: base handler')
         return self.response
 
     @property
