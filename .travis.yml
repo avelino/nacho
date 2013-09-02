@@ -2,6 +2,7 @@ language: python
 python:
   - "3.3"
 install:
+  - pip install -r requirements.txt
   - python setup.py install
 script: python tests/runtests.py
 notifications:
