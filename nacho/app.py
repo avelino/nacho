@@ -11,6 +11,7 @@ from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 class Application(object):
 
     template_dirs = ['html']
+    http_method_names = ['get', 'post', 'put', 'delete', 'head', 'options', 'trace']
 
     def __init__(self, write_headers=True):
         self.response = None
