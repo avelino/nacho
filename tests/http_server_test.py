@@ -80,7 +80,7 @@ class HttpServerProtocolTests(unittest.TestCase):
         self.loop.close()
 
     def test_http_status_exception(self):
-        exc = errors.HttpStatusException(500, message='Internal error')
+        exc = errors.HttpErrorException(500, message='Internal error')
         self.assertEqual(exc.code, 500)
         self.assertEqual(exc.message, 'Internal error')
 
