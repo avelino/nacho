@@ -18,7 +18,7 @@ setup(name='nacho',
     packages=find_packages(exclude=('doc', 'docs', 'example')),
     package_dir={'nacho': 'nacho'},
     dependency_links=[
-        'https://code.google.com/p/tulip/#egg=tulip'
+        'https://tulip.googlecode.com/archive/8d0ca0be7f5ad5bf0012c2b440ca725ee395354d.zip#egg=tulip'
     ],
     install_requires=REQUIREMENTS,
     #scripts=['nacho/bin/nacho'],
