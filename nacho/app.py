@@ -16,6 +16,7 @@ class Application(object):
     def __init__(self, write_headers=True):
         self.response = None
         self.write_headers = write_headers
+        self.renderer = Jinja2Worker(self.template_dirs)
 
     def initialize(self, server, message, payload, prev_response=None):
         self.server = server
