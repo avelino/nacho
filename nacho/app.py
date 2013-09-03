@@ -5,7 +5,7 @@ import email.message
 from urllib.parse import urlparse
 import cgi
 
-from jinja2 import Environment, FileSystemLoader, TemplateNotFound
+from nacho.renderers.jinja2 import Jinja2Worker
 
 
 class Application(object):
