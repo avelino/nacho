@@ -5,7 +5,7 @@ import email.message
 from urllib.parse import urlparse
 import cgi
 
-from nacho.renderers.jinja2 import Jinja2Worker
+from nacho.renderers.quik import QuikWorker
 
 
 class Application(object):
@@ -16,7 +16,7 @@ class Application(object):
     def __init__(self, write_headers=True):
         self.response = None
         self.write_headers = write_headers
-        self.renderer = Jinja2Worker(self.template_dirs)
+        self.renderer = QuikWorker(self.template_dirs)
 
     def initialize(self, server, message, payload, prev_response=None):
         self.server = server
