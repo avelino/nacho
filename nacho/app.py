@@ -65,9 +65,4 @@ class Application(object):
         return response
 
     def render(self, template_name, **kwargs):
-        env = Environment(loader=FileSystemLoader(self.template_dirs))
-        try:
-            template = env.get_template(template_name)
-        except TemplateNotFound:
-            raise TemplateNotFound(template_name)
-        self.response.write(template.render(kwargs).encode('utf-8'))
+        self.response.write(self.renderer.render(template_name, **kwargs))
