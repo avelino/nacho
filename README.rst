@@ -2,7 +2,7 @@ nacho
 =====
 Python micro web-framework and asynchronous networking library tulip, support Python 3.x
 
-.. image:: https://raw.github.com/avelino/nacho/master/docs/_static/nacho.jpg
+.. image:: https://raw.github.com/avelino/nacho/master/docs/_static/nacho.png
 
 .. image:: https://drone.io/github.com/avelino/nacho/status.png
     :target: https://drone.io/github.com/avelino/nacho/latest)
