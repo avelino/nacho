@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+import cgi
+import os
 import tulip
 import tulip.http
 import email.message
 from urllib.parse import urlparse
-import cgi
+from tulip.http.errors import HttpErrorException
 
 from nacho.renderers.quik import QuikWorker
 
@@ -66,3 +68,58 @@ class Application(object):
 
     def render(self, template_name, **kwargs):
         self.response.write(self.renderer.render(template_name, **kwargs))
+
+
+class StaticFile(Application):
+    def __init__(self, staticroot):
+        super(StaticFile, self).__init__(write_headers=False)
+        self.staticroot = staticroot
+
+    def __call__(self, request_args=None):
+        path = self.staticroot
+        if not os.path.exists(path):
+            print('no file', repr(path))
+            path = None
+        else:
+            isdir = os.path.isdir(path)
+
+        if not path:
+            raise HttpErrorException(404, message="Path not found")
+
+        headers = email.message.Message()
+        response = tulip.http.Response(
+            self.server.transport, 200, close=True)
+        response.add_header('Transfer-Encoding', 'chunked')
+
+        if isdir:
+            response.add_header('Content-type', 'text/html')
+            response.send_headers()
+
+            response.write(b'<ul>\r\n')
+            for name in sorted(os.listdir(path)):
+                if name.isprintable() and not name.startswith('.'):
+                    try:
+                        bname = name.encode('ascii')
+                    except UnicodeError:
+                        pass
+                    else:
+                        if os.path.isdir(os.path.join(path, name)):
+                            response.write(b'<li><a href="' + bname +
+                                           b'/">' + bname + b'/</a></li>\r\n')
+                        else:
+                            response.write(b'<li><a href="' + bname +
+                                           b'">' + bname + b'</a></li>\r\n')
+            response.write(b'</ul>')
+        else:
+            response.add_header('Content-type', 'text/plain')
+            response.send_headers()
+
+            try:
+                with open(path, 'rb') as fp:
+                    chunk = fp.read(8196)
+                    while chunk:
+                        response.write(chunk)
+                        chunk = fp.read(8196)
+            except OSError:
+                response.write(b'Cannot open')
+        return response
